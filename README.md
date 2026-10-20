@@ -5,6 +5,31 @@ A production-quality, browser-based 3D dice game: real-time PBR rendering
 cryptographic RNG, procedural spatial audio, and a full game UI — 1 to 12 dice,
 17 physically-based materials, 4 game modes.
 
+## Deploy (Netlify or Vercel)
+
+The build emits a single self-contained `dist/index.html` (JS + CSS inlined via
+`vite-plugin-singlefile`), so both hosts serve it as a plain static site —
+no server-side runtime, no environment variables, no keys.
+
+**Netlify** — drag & drop or CLI:
+
+```bash
+npx netlify deploy --dir=dist --prod     # or connect the repo; netlify.toml
+                                         # already sets build = npm run build
+```
+
+**Vercel** — connect the repo in the dashboard (Vite preset is auto-detected,
+`vercel.json` included), or:
+
+```bash
+npx vercel --prod
+```
+
+Both files (`netlify.toml`, `vercel.json`) live at the repo root; the configs
+pick up `dist/` automatically after `npm run build`. A manual one-shot path that
+always works: `npm run build`, then drag the `dist/` folder onto the Netlify
+Drop zone at https://app.netlify.com/drop.
+
 ## Run it
 
 ```bash

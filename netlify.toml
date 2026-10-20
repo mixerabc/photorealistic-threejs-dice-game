@@ -1,0 +1,17 @@
+# Netlify deploy config — Monte Carlo Dice (Vite + React + Three.js)
+# The build produces a single self-contained dist/index.html (vite-plugin-singlefile),
+# so the site is pure static — no server, no rewrites needed.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# SPA-style fallback (harmless for the single-file build, safe if you ever
+# split the bundle into multiple files with client routing)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
